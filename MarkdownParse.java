@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class MarkdownParse {
+public class MarkDownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then take up to
@@ -23,7 +23,7 @@ public class MarkdownParse {
     public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
-        System.out.println(contents);
+        //System.out.println(contents);
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
     }
