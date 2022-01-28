@@ -3,7 +3,7 @@
 ## Code Change 1: Fixing Infinite While Loop
 Fix for Infinite While Loop: ![](infiniteWhileLoopFix.png)
 
-Link to Failure-Inducing File: [https://github.com/jwong1209/markdown-parse/blob/main/test-file2.md](https://github.com/jwong1209/markdown-parse/blob/main/test-file2.md)
+Link to Failure-Inducing File: [https://github.com/jwong1209/markdown-parse/blob/c0518531ee48080ba5e5c76d54f7290ab257f3be/test-file2.md](https://github.com/jwong1209/markdown-parse/blob/c0518531ee48080ba5e5c76d54f7290ab257f3be/test-file2.md)
 
 Symptom of Failure-Inducing Input: 
 ![Infinite While Loop](infiniteWhileLoop.png)
@@ -13,7 +13,7 @@ Explanation: The line in the code `currentIndex = closeParen + 1` will reset the
 ## Code Change 2: Fixing Code Giving Images
 Fix for Image: ![](imageGivenFix.png)
 
-Link to Failure-Inducing File:[https://github.com/jwong1209/markdown-parse/blob/main/test-file4.md](https://github.com/jwong1209/markdown-parse/blob/main/test-file4.md)
+Link to Failure-Inducing File:[https://github.com/jwong1209/markdown-parse/blob/c0518531ee48080ba5e5c76d54f7290ab257f3be/test-file4.md](https://github.com/jwong1209/markdown-parse/blob/c0518531ee48080ba5e5c76d54f7290ab257f3be/test-file4.md)
 
 Symptom of Failure-Inducing Input:
 ![imageGiven](imageGiven.png)
@@ -22,10 +22,12 @@ Explanation: The code only uses the index of the brackets and parenthesis to dec
 
 ## Code Change 3: Fixing Code Giving Links When Gap Between
 Fix for Code Giving Link Despite Characters Between Bracket and Parenthesis:
+![gapNotLinkFix](gapNotLinkFix.png)
 
 Link to Failure-Inducing File: 
+[https://github.com/jwong1209/markdown-parse/blob/c0518531ee48080ba5e5c76d54f7290ab257f3be/professorFile5.md](https://github.com/jwong1209/markdown-parse/blob/c0518531ee48080ba5e5c76d54f7290ab257f3be/professorFile5.md)
 
 Symptom of Failure-Inducing File:
 ![gapNotLink](gapNotLink.png)
 
-Explanation: The code only looks at where the `[` is and then the `]` and then the `(` and then the `)` is but does not take into account the distance between the `]` and`(`. That means even though in `professorFile5.md` there are characters between the `]` and `(`, it still prints `page.com` as if it were a correctly formatted link when it should not since there are characters in between. The fix for this was checking that the `]` and `(` were right next to each other by adding `(openParen - nextCloseBracket == 1)` into the if statement. 
+Explanation: The code only looks at where the `[` is and then the `]` and then the `(` and then the `)` is but does not take into account the distance between the `]` and`(`. That means even though in `professorFile5.md` there are characters between the `]` and `(`, it still prints `page.com` as if it were a correctly formatted link when it should not since there are characters in between. The fix for this was checking that the `]` and `(` were right next to each other by adding `(openParen - nextCloseBracket == 1)` into the if statement.
