@@ -14,10 +14,10 @@ public class MarkdownParseTest {
     public void addition() throws IOException {
         // assertEquals(2, 1 + 1);
 
-        String contentsTest = Files.readString(Path.of("./test-file.md"));
-        String contentsTest1 = Files.readString(Path.of("./test-file2.md"));
-        String contentsTest2 = Files.readString(Path.of("./test-file3.md"));
-        String contentsTest3 = Files.readString(Path.of("./test-file4.md"));
+        String contentsTest = Files.readString(Path.of("test-file.md"));
+        String contentsTest1 = Files.readString(Path.of("test-file2.md"));
+        String contentsTest2 = Files.readString(Path.of("test-file3.md"));
+        String contentsTest3 = Files.readString(Path.of("test-file4.md"));
 
         assertEquals(List.of("https://something.com", "some-page.html"), 
             MarkdownParse.getLinks(contentsTest));
