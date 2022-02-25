@@ -22,7 +22,8 @@ public class MarkdownParse{
             if(nextOpenBracket == -1 || nextCloseBracket == -1 || openParen == -1 || closeParen == -1){
                 return toReturn;
             }
-            if((openParen - nextCloseBracket == 1) && (nextOpenBracket == 0 || markdown.indexOf("!", nextOpenBracket-1) != nextOpenBracket-1)){
+            if((openParen - nextCloseBracket == 1) && (nextOpenBracket == 0 || markdown.indexOf("!", nextOpenBracket-1) != nextOpenBracket-1
+                && nextOpenBracket < nextCloseBracket)){
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
             }
             currentIndex = closeParen + 1;
