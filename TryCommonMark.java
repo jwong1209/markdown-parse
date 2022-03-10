@@ -1,6 +1,7 @@
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
+import java.util.ArrayList;
 
 class WordCountVisitor extends AbstractVisitor {
     int wordCount = 0;
@@ -28,9 +29,15 @@ class LinkVisitor extends AbstractVisitor {
         //wordCount += text.getLiteral().split("\\W+").length;
 
         // Descend into children (could be omitted in this case because Text nodes don't have children).
-        visitChildren(text);
         //wordCount += text.getDestination().split("\\W+").length;
-        System.out.println(text.getDestination());
+        ArrayList<String> container = new ArrayList<>();
+        String links = text.getDestination();
+        String[] linkArray = links.split("\n");
+        for(int i = 0; i < linkArray.length; i++){
+            container.add(linkArray[i]);
+        }
+        visitChildren(text);
+        
     }
 }
 
