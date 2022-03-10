@@ -49,7 +49,7 @@ class TryCommonMark {
         System.out.println(visitor.wordCount);  // 4
 
         System.out.println("-------------------------------");
-        Node linkNode = parser.parse("[Hello](hello.com) \n [secondHello](secondHello.com)");
+        Node linkNode = parser.parse("[Hello]() \n [secondHello](secondHello.com)");
         LinkVisitor linkGet = new LinkVisitor();
         linkNode.accept(linkGet);
         System.out.println(linkGet.wordCount);  // 4
