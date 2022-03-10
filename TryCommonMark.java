@@ -2,7 +2,6 @@ import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
-
 class WordCountVisitor extends AbstractVisitor {
     int wordCount = 0;
 
@@ -15,6 +14,21 @@ class WordCountVisitor extends AbstractVisitor {
 
         // Descend into children (could be omitted in this case because Text nodes don't have children).
         visitChildren(text);
+    }
+}
+
+class LinkVisitor extends AbstractVisitor {
+    int wordCount = 0;
+
+    @Override
+    public void visit(Link text) {
+        // This is called for all Text nodes. Override other visit methods for other node types.
+
+        // Count words (this is just an example, don't actually do it this way for various reasons).
+        //wordCount += text.getLiteral().split("\\W+").length;
+
+        // Descend into children (could be omitted in this case because Text nodes don't have children).
+        System.out.println(text.getDestination());
     }
 }
 
@@ -32,5 +46,11 @@ class TryCommonMark {
         WordCountVisitor visitor = new WordCountVisitor();
         node.accept(visitor);
         System.out.println(visitor.wordCount);  // 4
+
+        System.out.println("-------------------------------");
+        Node linkNode = parser.parse("[Hello](hello.com) \n [secondHello](secondHello.com)");
+        LinkVisitor linkGet = new LinkVisitor();
+        node.accept(linkGet);
+        //System.out.println(visitor.wordCount);  // 4
     }
 }
