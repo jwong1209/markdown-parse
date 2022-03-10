@@ -1,6 +1,10 @@
 import org.commonmark.node.*;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 class WordCountVisitor extends AbstractVisitor {
@@ -38,11 +42,11 @@ class LinkVisitor extends AbstractVisitor {
         }
         visitChildren(text);
         System.out.println(container);
-    }
+    } 
 }
 
 class TryCommonMark {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         Parser parser = Parser.builder().build();
         Node document = parser.parse("This is *Sparta*");
         HtmlRenderer renderer = HtmlRenderer.builder().build();
@@ -57,9 +61,11 @@ class TryCommonMark {
         System.out.println(visitor.wordCount);  // 4
 
         System.out.println("-------------------------------");
-        Node linkNode = parser.parse("[Hello](hello.com) \n [secondHello](secondHello.com)");
+        Path fileName = Path.of(args[0]);
+	    String contents = Files.readString(fileName);
+        //System.out.println(contents);
+        Node linkNode = parser.parse(contents);
         LinkVisitor linkGet = new LinkVisitor();
         linkNode.accept(linkGet);
-        System.out.println(linkGet.wordCount);  // 4
     }
 }
