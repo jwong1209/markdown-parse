@@ -29,7 +29,8 @@ class LinkVisitor extends AbstractVisitor {
 
         // Descend into children (could be omitted in this case because Text nodes don't have children).
         visitChildren(text);
-        wordCount += text.getDestination().split("\\W+").length;
+        //wordCount += text.getDestination().split("\\W+").length;
+        System.out.println(text.getDestination());
     }
 }
 
