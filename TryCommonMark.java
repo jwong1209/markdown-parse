@@ -28,7 +28,8 @@ class LinkVisitor extends AbstractVisitor {
         //wordCount += text.getLiteral().split("\\W+").length;
 
         // Descend into children (could be omitted in this case because Text nodes don't have children).
-        System.out.println(text.getDestination());
+        visitChildren(text);
+        wordCount += text.getDestination().split("\\W+").length;
     }
 }
 
@@ -50,7 +51,7 @@ class TryCommonMark {
         System.out.println("-------------------------------");
         Node linkNode = parser.parse("[Hello](hello.com) \n [secondHello](secondHello.com)");
         LinkVisitor linkGet = new LinkVisitor();
-        System.out.println(node.accept(linkGet));
-        //System.out.println(visitor.wordCount);  // 4
+        linkNode.accept(linkGet);
+        System.out.println(linkGet.wordCount);  // 4
     }
 }
