@@ -37,7 +37,7 @@ class LinkVisitor extends AbstractVisitor {
             container.add(linkArray[i]);
         }
         visitChildren(text);
-        
+        System.out.println(container);
     }
 }
 
